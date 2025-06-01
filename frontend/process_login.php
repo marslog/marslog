@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$usersFile = __DIR__ . '/../data/users.json'; // ✅ ไม่ใช้ realpath
+$usersFile = __DIR__ . '/data/users.json'; // ✅ ไม่ใช้ realpath
 
 // Debug แสดง path ชั่วคราว
 if (!file_exists($usersFile)) {
