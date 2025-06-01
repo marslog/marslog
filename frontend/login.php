@@ -9,7 +9,7 @@
 
   <style>
     body {
-      background: url('assets/img/image.png') no-repeat center center fixed;
+      background: url('assets/img/image.jpg') no-repeat center center fixed;
       background-size: cover;
     }
     .overlay {
