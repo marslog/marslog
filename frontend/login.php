@@ -9,58 +9,54 @@
 
   <style>
     body {
-      background: url('../assets/img/image.jpg') no-repeat center center fixed;
+      background: url('../assets/img/4808c91a-e4fb-4ab1-8728-e752a1eda72f.png') no-repeat center center fixed;
       background-size: cover;
     }
     .overlay {
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
     }
   </style>
 </head>
 <body class="h-screen w-screen relative font-sans">
-
-  <!-- Top Menu Bar -->
-  <div class="absolute top-0 left-0 w-full bg-gray-900 p-3 flex justify-between items-center z-20 shadow-md">
-    <span class="text-white text-lg font-semibold ml-4">Welcome to MARSLOGS</span>
-    <img src="../assets/img/MARSLOGS.png" alt="MARSLOGS Logo" class="w-12 h-12 mr-4" />
-  </div>
-
-  <!-- Dark overlay -->
+  <!-- Overlay -->
   <div class="overlay w-full h-full absolute top-0 left-0 z-0"></div>
 
   <!-- Login Form -->
   <div class="flex justify-center items-center h-full relative z-10">
-    <form action="process_login.php" method="POST" class="bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-md">
-      
-      <!-- Logo -->
+    <form action="process_login.php" method="POST" class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-2xl w-full max-w-md">
       <div class="flex justify-center mb-6">
-        <img src="../assets/img/MARSLOGS_no_bg.png" alt="MARSLOGS Logo" class="w-20 h-20">
+        <img src="../assets/img/MARSLOGS_no_bg.png" alt="MARSLOGS Logo" class="w-16 h-16 rounded-full bg-white p-1">
       </div>
 
-      <h1 class="text-3xl font-bold mb-6 text-center text-blue-400">MARSLOGS</h1>
+      <h1 class="text-2xl font-bold mb-6 text-center text-blue-400 tracking-wide">MARSLOGS</h1>
 
-      <!-- Username Input -->
+      <!-- Username -->
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-white">Username</label>
+        <label class="block mb-1 text-sm font-semibold text-white">Username</label>
         <input type="text" name="username" placeholder="Enter your username"
-          class="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
       </div>
 
-      <!-- Password Input -->
+      <!-- Password -->
       <div class="mb-6">
-        <label class="block mb-2 text-sm font-bold text-white">Password</label>
+        <label class="block mb-1 text-sm font-semibold text-white">Password</label>
         <input type="password" name="password" placeholder="Enter your password"
-          class="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
       </div>
 
       <!-- Login Button -->
       <button type="submit"
-        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded transition duration-300">
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded transition duration-300">
         Login
       </button>
 
+      <!-- Forgot -->
+      <div class="text-center mt-3">
+        <a href="#" class="text-sm text-blue-300 hover:underline">Forgot Password?</a>
+      </div>
+
       <!-- Footer -->
-      <p class="text-sm text-gray-400 mt-4 text-center">© 2024 MARSLOGS | All Rights Reserved</p>
+      <p class="text-xs text-gray-400 mt-6 text-center">© 2024 MARSLOGS | All Rights Reserved</p>
     </form>
   </div>
 </body>
