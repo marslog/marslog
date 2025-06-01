@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$usersFile = __DIR__ . '/../data/users.json'; // Corrected path to users.json
+$usersFile = __DIR__ . '/data/users.json'; // Corrected path to users.json
 if (!file_exists($usersFile)) {
     header("Location: login.php?error=db");
     exit;
