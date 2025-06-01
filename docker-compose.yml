@@ -10,7 +10,7 @@ services:
       - marslog-net
 
   php-ui:
-    image: php:8.1-apache
+    build: ./frontend
     ports:
       - "8885:80"
     networks:
