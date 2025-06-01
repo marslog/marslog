@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MARSLOGS</title>
-  <link rel="icon" href="../assets/img/favicon.ico" type="image/x-icon" />
-  <link href="../assets/css/tailwind.min.css" rel="stylesheet" />
+  <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     body {
-      background: url('../assets/img/4808c91a-e4fb-4ab1-8728-e752a1eda72f.png') no-repeat center center fixed;
+      background: url('assets/img/94a1bde3-eed5-4f90-8ad6-6f2b579ad112.png') no-repeat center center fixed;
       background-size: cover;
     }
     .overlay {
@@ -25,7 +25,7 @@
   <div class="flex justify-center items-center h-full relative z-10">
     <form action="process_login.php" method="POST" class="bg-gray-900 bg-opacity-90 p-8 rounded-xl shadow-2xl w-full max-w-md">
       <div class="flex justify-center mb-6">
-        <img src="../assets/img/MARSLOGS_no_bg.png" alt="MARSLOGS Logo" class="w-16 h-16 rounded-full bg-white p-1">
+        <img src="assets/img/MARSLOGS_no_bg.png" alt="MARSLOGS Logo" class="w-16 h-16 rounded-full bg-white p-1">
       </div>
 
       <h1 class="text-2xl font-bold mb-6 text-center text-blue-400 tracking-wide">MARSLOGS</h1>
