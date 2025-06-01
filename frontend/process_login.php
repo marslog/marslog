@@ -21,17 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $authenticated = false;
 
     foreach ($users as $user) {
-        // ตรวจสอบ username และ password โดยใช้ password_verify (hash)
-        if (
-            $user['username'] === $username &&
-            password_verify($password, $user['password'])
-        ) {
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = strtolower($user['role']);
-            $authenticated = true;
-            break;
-        }
+    if ($user['username'] === $username) {
+        echo "<pre>";
+        echo "Username matched: $username\n";
+        echo "Input password: $password\n";
+        echo "Stored hash: " . $user['password'] . "\n";
+        echo "Verified: " . (password_verify($password, $user['password']) ? "YES" : "NO");
+        echo "</pre>";
+        exit;
     }
+}
+
 
     if ($authenticated) {
         // redirect ตาม role
