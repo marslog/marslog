@@ -1,26 +1,36 @@
-version: '3.7'
+version: '3'
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
-    container_name: elasticsearch
     environment:
       - discovery.type=single-node
-      - xpack.security.enabled=false
-      - bootstrap.memory_lock=true
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
     ports:
       - "9200:9200"
     networks:
       - marslog-net
 
+  php-ui:
+    image: php:8.1-apache
+    ports:
+      - "8885:80"
+    networks:
+      - marslog-net
+
+  flask-api:
+    image: python:3.10-slim
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: ["python3", "app.py"]
+    ports:
+      - "5000:5000"
+    networks:
+      - marslog-net
+
   logstash:
     image: docker.elastic.co/logstash/logstash:8.12.0
-    container_name: logstash
     volumes:
-      - ./logstash:/usr/share/logstash/pipeline/
+      - ./logstash:/usr/share/logstash/pipeline
     ports:
       - "5044:5044"
     depends_on:
@@ -28,40 +38,17 @@ services:
     networks:
       - marslog-net
 
-  flask-api:
-    image: python:3.10-slim
-    container_name: flask-api
-    volumes:
-      - ./backend:/app
-    working_dir: /app
-    command: ["python3", "app.py"]
-    networks:
-      - marslog-net
-
-  php-ui:
-    image: php:8.1-apache
-    container_name: php-ui
-    volumes:
-      - ./frontend:/var/www/html
-    ports:
-      - "8885:80"
-    networks:
-      - marslog-net
-
   agent-server:
     image: alpine
-    container_name: agent-server
-    command: ["sh", "-c", "while true; do sleep 300; done"]
+    command: sh -c 'while true; do sleep 5; done'
     networks:
       - marslog-net
 
   alert-service:
     image: alpine
-    container_name: alert-service
-    command: ["sh", "-c", "while true; do sleep 300; done"]
+    command: sh -c 'while true; do sleep 5; done'
     networks:
       - marslog-net
 
 networks:
   marslog-net:
-    driver: bridge
