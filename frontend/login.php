@@ -35,32 +35,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="assets/css/tailwind.min.css">
   <style>
     body {
-      background-color: #1a1a1a;
+      margin: 0;
+      padding: 0;
     }
   </style>
 </head>
-<body class="flex items-center justify-center h-screen">
-  <div class="flex w-[800px] rounded-2xl overflow-hidden shadow-lg">
-    <div class="w-1/2 bg-cover bg-center text-white p-10 flex flex-col justify-end" style="background-image: url('assets/img/b83dbd31-fdce-401b-8148-cfa338e4c81f.png');">
-      <div>
-        <h2 class="text-2xl font-light">Be a Part of</h2>
-        <h1 class="text-3xl font-bold">Something <span class="text-blue-400">Beautiful</span></h1>
+<body>
+  <div class="bg-cover bg-gradient-to-br from-[#7337FF] via-black to-[#0C7EA8]" style="background-image: url('assets/img/8b0bfc19-ee5b-4fe3-8f2b-4781af82efef.png')">
+    <div class="h-screen flex justify-center items-center backdrop-brightness-50">
+      <div class="flex flex-col items-center space-y-8">
+        <div>
+          <img src="assets/img/marslogs-logo.png" alt="Marslog Logo" class="w-28 h-28" />
+        </div>
+        <form method="POST" class="rounded-[20px] w-80 p-8 bg-[#310D84] shadow-lg">
+          <h1 class="text-white text-3xl font-bold mb-4">Login</h1>
+          <?php if (!empty($error)) echo "<p class='text-red-400 text-sm mb-4'>$error</p>"; ?>
+          <div class="space-y-4">
+            <input type="text" name="username" placeholder="Email address" class="bg-[#8777BA] w-full p-2.5 rounded-md placeholder:text-gray-300 shadow-md shadow-blue-950" required />
+            <input type="password" name="password" placeholder="Password" class="bg-[#8777BA] w-full p-2.5 rounded-md placeholder:text-gray-300 shadow-md shadow-blue-950" required />
+          </div>
+          <div class="mb-4">
+            <span class="text-[#228CE0] text-[10px] ml-2 cursor-pointer">Forget Password?</span>
+          </div>
+          <div class="flex justify-center mb-4">
+            <button type="submit" class="h-10 w-full text-white rounded-md bg-gradient-to-br from-[#7336FF] to-[#3269FF] shadow-md shadow-blue-950">
+              Sign In
+            </button>
+          </div>
+          <div class="text-gray-300 text-center text-sm">
+            Don’t have an account?
+            <span class="text-[#228CE0] cursor-pointer">Sign up</span>
+          </div>
+        </form>
       </div>
     </div>
-    <form method="POST" class="w-1/2 bg-black p-10 text-white">
-      <h2 class="text-2xl font-bold mb-2">Login</h2>
-      <p class="text-gray-400 mb-6 text-sm">Enter your credentials to access your account</p>
-      <?php if (!empty($error)) echo "<p class='text-red-400 text-sm mb-4'>$error</p>"; ?>
-      <label class="block mb-2 text-sm">Email</label>
-      <input type="text" name="username" class="w-full mb-4 p-2 rounded bg-gray-800 text-white" placeholder="you@example.com" required>
-      <label class="block mb-2 text-sm">Password</label>
-      <input type="password" name="password" class="w-full mb-4 p-2 rounded bg-gray-800 text-white" placeholder="********" required>
-      <div class="flex justify-between items-center text-sm mb-6">
-        <label><input type="checkbox" class="mr-2">Remember me</label>
-      </div>
-      <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 rounded">Login</button>
-      <p class="mt-4 text-sm text-center text-gray-400">Not a member? <a href="#" class="text-yellow-400 font-medium">Create an account</a></p>
-    </form>
   </div>
 </body>
 </html>
