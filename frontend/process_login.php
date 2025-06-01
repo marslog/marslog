@@ -2,6 +2,10 @@
 session_start();
 
 $usersFile = realpath(__DIR__ . '/../data/users.json');
+echo "Resolved path: $usersFile<br>";
+echo "Exists: " . (file_exists($usersFile) ? "YES" : "NO");
+exit;
+
 if (!$usersFile || !file_exists($usersFile)) {
     header("Location: login.php?error=db");
     exit;
