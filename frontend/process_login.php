@@ -1,16 +1,15 @@
 <?php
 session_start();
 
-$usersFile = realpath(__DIR__ . '/../data/users.json');
-echo "Resolved path: $usersFile<br>";
-echo "Exists: " . (file_exists($usersFile) ? "YES" : "NO");
-exit;
+$usersFile = __DIR__ . '/../data/users.json'; // ✅ ไม่ใช้ realpath
 
-if (!$usersFile || !file_exists($usersFile)) {
-    header("Location: login.php?error=db");
+// Debug แสดง path ชั่วคราว
+if (!file_exists($usersFile)) {
+    echo "File NOT found: $usersFile";
     exit;
 }
 
+// ดึงข้อมูล
 $usersData = json_decode(file_get_contents($usersFile), true);
 $users = $usersData['users'] ?? [];
 
