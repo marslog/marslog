@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARSLOGS</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link href="tailwind.min.css" rel="stylesheet">
 
     <style>
         body {
-            background: url('image.jpg') no-repeat center center fixed;
+            background: url('assets/image.jpg') no-repeat center center fixed;
             background-size: cover;
         }
         .overlay {
