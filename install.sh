@@ -2,6 +2,15 @@
 
 echo "[*] Starting MARSLOG Appliance installation (No Kibana)..."
 
+# STEP 0: ติดตั้ง UFW และอนุญาตพอร์ตสำคัญ
+echo "[+] Installing firewall rules (ufw)"
+apt install -y ufw
+ufw allow 22/tcp        # SSH
+ufw allow 8885/tcp      # Web UI
+ufw allow 5044/tcp      # Logstash
+ufw allow 9200/tcp      # Elasticsearch
+ufw --force enable      # เปิด firewall ทันทีแบบไม่ถาม
+
 # STEP 1: เตรียม log folder
 mkdir -p /var/log/marslog
 chown -R $USER:$USER /var/log/marslog
