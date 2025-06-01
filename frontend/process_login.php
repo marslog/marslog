@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$usersFile = __DIR__ . 'marslog/data/users.json';
-if (!file_exists($usersFile)) {
+$usersFile = realpath(__DIR__ . '/../data/users.json'); // ✅ ตรงโฟลเดอร์จริง
+if (!$usersFile || !file_exists($usersFile)) {
     header("Location: login.php?error=db");
     exit;
 }
@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $authenticated = false;
     foreach ($users as $user) {
         if ($user['username'] === $username && (
-            $password === $user['password'] || password_verify($password, $user['password']))) {
-            // Authenticated
+            $password === $user['password'] || password_verify($password, $user['password'])
+        )) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
             $authenticated = true;
