@@ -1,0 +1,1 @@
+<?php echo '<h2>Device Monitoring Page</h2>'; ?>

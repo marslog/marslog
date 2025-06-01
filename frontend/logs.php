@@ -1,0 +1,1 @@
+<?php echo '<h2>Log Search Page</h2>'; ?>

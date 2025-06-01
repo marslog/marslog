@@ -1,0 +1,1 @@
+<?php echo '<h2>Reporting Page</h2>'; ?>

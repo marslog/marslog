@@ -1,0 +1,1 @@
+<?php echo '<h2>License Information</h2>'; ?>

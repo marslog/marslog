@@ -1,0 +1,1 @@
+<?php echo '<h2>AI Chatbot</h2>'; ?>
