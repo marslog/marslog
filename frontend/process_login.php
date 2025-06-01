@@ -1,22 +1,13 @@
 <?php
 session_start();
 
-echo "<pre>";
-echo "Current __DIR__: " . __DIR__ . "\n";
-echo "Checking: " . __DIR__ . "/data/users.json\n";
-echo "file_exists: " . (file_exists(__DIR__ . '/data/users.json') ? 'YES' : 'NO') . "\n";
-echo "</pre>";
-exit;
+$usersFile = __DIR__ . '/data/users.json';  // ✅ ใช้ path นี้
 
-$usersFile = __DIR__ . '/data/users.json'; // ✅ ไม่ใช้ realpath
-
-// Debug แสดง path ชั่วคราว
 if (!file_exists($usersFile)) {
-    echo "File NOT found: $usersFile";
+    header("Location: login.php?error=db");
     exit;
 }
 
-// ดึงข้อมูล
 $usersData = json_decode(file_get_contents($usersFile), true);
 $users = $usersData['users'] ?? [];
 
@@ -26,7 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $authenticated = false;
     foreach ($users as $user) {
-        if ($user['username'] === $username && password_verify($password, $user['password'])) {
+        if (
+            $user['username'] === $username &&
+            password_verify($password, $user['password'])
+        ) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = strtolower($user['role']);
             $authenticated = true;
@@ -45,4 +39,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     header("Location: login.php");
     exit;
 }
-?>
