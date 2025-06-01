@@ -1,51 +1,46 @@
 <?php
 session_start();
-require 'db.php'; // เชื่อมต่อฐานข้อมูล
+
+$usersFile = __DIR__ . '/data/users.json';
+if (!file_exists($usersFile)) {
+    $_SESSION['error'] = "User database not found.";
+    header("Location: login.php");
+    exit;
+}
+
+$usersData = json_decode(file_get_contents($usersFile), true);
+$users = $usersData['users'] ?? [];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    // ค้นหาผู้ใช้ในฐานข้อมูล
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->execute(['username' => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        // ตรวจสอบรหัสผ่านทั้งแบบ Plain Text และ Hash
-        if ($password === $user['password'] || password_verify($password, $user['password'])) {
-            // ตั้งค่า Session
-            $_SESSION['user_id'] = $user['id'];
+    $authenticated = false;
+    foreach ($users as $user) {
+        if ($user['username'] === $username && (
+            $password === $user['password'] || password_verify($password, $user['password']))) {
+            // Authenticated
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-
-            // เปลี่ยนเส้นทางตาม Role
-            switch ($user['role']) {
-                case 'Admin':
-                    header("Location: dashboard_admin.php");
-                    break;
-                case 'Editor':
-                    header("Location: dashboard_editor.php");
-                    break;
-                case 'Viewer':
-                    header("Location: dashboard_viewer.php");
-                    break;
-            }
-            exit;
-        } else {
-            // รหัสผ่านไม่ถูกต้อง
-            $_SESSION['error'] = "Invalid username or password.";
-            header("Location: index.html");
-            exit;
+            $authenticated = true;
+            break;
         }
+    }
+
+    if ($authenticated) {
+        if ($_SESSION['role'] === 'admin') {
+            header("Location: dashboard_admin.php");
+        } else {
+            header("Location: dashboard_user.php");
+        }
+        exit;
     } else {
-        // ไม่พบผู้ใช้ในระบบ
-        $_SESSION['error'] = "User not found.";
-        header("Location: index.html");
+        $_SESSION['error'] = "Invalid username or password.";
+        header("Location: login.php");
         exit;
     }
 } else {
-    header("Location: index.html");
+    header("Location: login.php");
     exit;
 }
 ?>
