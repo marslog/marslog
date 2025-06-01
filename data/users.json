@@ -2,12 +2,12 @@
   "users": [
     {
       "username": "admin",
-      "password": "Marslog@admin123",
+      "password": "$2y$10$KmrdnQwKpX0AjVjoO1jxHep1nuzvVapDiRzZfie5GKhUGt0SfeQoW",
       "role": "admin"
     },
     {
       "username": "marslog",
-      "password": "marslog",
+      "password": "$2y$10$gLF4EXcnujAbvKdzW2eJ3OHz3zBf1/9cSRBz/cFMEJ6raS6kqQZkS",
       "role": "user"
     }
   ]
