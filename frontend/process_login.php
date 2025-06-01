@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$usersFile = realpath(__DIR__ . '/../data/users.json'); // ✅ ตรงโฟลเดอร์จริง
+$usersFile = realpath(__DIR__ . '/../data/users.json');
 if (!$usersFile || !file_exists($usersFile)) {
     header("Location: login.php?error=db");
     exit;
@@ -16,22 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $authenticated = false;
     foreach ($users as $user) {
-        if ($user['username'] === $username && (
-            $password === $user['password'] || password_verify($password, $user['password'])
-        )) {
+        if ($user['username'] === $username && password_verify($password, $user['password'])) {
             $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
+            $_SESSION['role'] = strtolower($user['role']);
             $authenticated = true;
             break;
         }
     }
 
     if ($authenticated) {
-        if ($_SESSION['role'] === 'admin') {
-            header("Location: dashboard_admin.php");
-        } else {
-            header("Location: dashboard_user.php");
-        }
+        header("Location: " . ($_SESSION['role'] === 'admin' ? 'dashboard_admin.php' : 'dashboard_user.php'));
         exit;
     } else {
         header("Location: login.php?error=invalid");
