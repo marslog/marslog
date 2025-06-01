@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+echo "<pre>";
+echo "Current __DIR__: " . __DIR__ . "\n";
+echo "Checking: " . __DIR__ . "/data/users.json\n";
+echo "file_exists: " . (file_exists(__DIR__ . '/data/users.json') ? 'YES' : 'NO') . "\n";
+echo "</pre>";
+exit;
+
 $usersFile = __DIR__ . '/data/users.json'; // ✅ ไม่ใช้ realpath
 
 // Debug แสดง path ชั่วคราว
