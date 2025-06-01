@@ -17,6 +17,8 @@ $users = $usersData['users'] ?? [];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
+echo "Raw password: [{$password}] (length: " . strlen($password) . ")<br>";
+
 
     $authenticated = false;
 
