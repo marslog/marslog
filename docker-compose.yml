@@ -6,6 +6,7 @@ services:
       - discovery.type=single-node
     ports:
       - "9200:9200"
+    restart: unless-stopped
     networks:
       - marslog-net
 
@@ -15,6 +16,7 @@ services:
       - ./frontend:/var/www/html
     ports:
       - "8885:80"
+    restart: unless-stopped
     networks:
       - marslog-net
 
@@ -26,6 +28,7 @@ services:
     command: ["python3", "app.py"]
     ports:
       - "5000:5000"
+    restart: unless-stopped
     networks:
       - marslog-net
 
@@ -37,18 +40,21 @@ services:
       - "5044:5044"
     depends_on:
       - elasticsearch
+    restart: unless-stopped
     networks:
       - marslog-net
 
   agent-server:
     image: alpine
     command: sh -c 'while true; do sleep 5; done'
+    restart: unless-stopped
     networks:
       - marslog-net
 
   alert-service:
     image: alpine
     command: sh -c 'while true; do sleep 5; done'
+    restart: unless-stopped
     networks:
       - marslog-net
 
